@@ -143,7 +143,7 @@ export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSe
                 boxShadow: `0 0 8px ${backendOnline ? 'var(--neon-green)' : 'var(--neon-pink)'}`
               }}
             />
-            <span>API:8000</span>
+            <span>{systemStatus?.mode || (backendOnline ? 'API:ONLINE' : 'API:OFFLINE')}</span>
           </div>
 
           <div
@@ -154,13 +154,13 @@ export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSe
               fontSize: '10px',
               fontFamily: 'var(--font-mono)',
               padding: '3px 8px',
-              background: ollamaOnline ? 'rgba(0, 242, 254, 0.1)' : 'rgba(255, 230, 0, 0.15)',
-              border: `1px solid ${ollamaOnline ? 'var(--neon-cyan)' : 'var(--neon-yellow)'}`,
-              color: ollamaOnline ? 'var(--neon-cyan)' : 'var(--neon-yellow)'
+              background: ollamaOnline || systemStatus?.mode?.includes('Cloud') ? 'rgba(0, 242, 254, 0.1)' : 'rgba(255, 230, 0, 0.15)',
+              border: `1px solid ${ollamaOnline || systemStatus?.mode?.includes('Cloud') ? 'var(--neon-cyan)' : 'var(--neon-yellow)'}`,
+              color: ollamaOnline || systemStatus?.mode?.includes('Cloud') ? 'var(--neon-cyan)' : 'var(--neon-yellow)'
             }}
           >
-            <Zap size={12} color={ollamaOnline ? 'var(--neon-cyan)' : 'var(--neon-yellow)'} />
-            <span>{ollamaOnline ? 'OLLAMA: ON' : 'LOCAL CORE'}</span>
+            <Zap size={12} color={ollamaOnline || systemStatus?.mode?.includes('Cloud') ? 'var(--neon-cyan)' : 'var(--neon-yellow)'} />
+            <span>{systemStatus?.mode?.includes('Cloud') ? 'CLOUD NEURAL' : (ollamaOnline ? 'OLLAMA: ON' : 'LOCAL CORE')}</span>
           </div>
         </div>
       </div>

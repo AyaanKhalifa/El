@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useVoice, isVoiceFemale, WORLD_LANGUAGES } from '../hooks/useVoice';
 import { cyberAudio } from '../utils/cyberAudio';
+import { processClientMessage } from '../utils/clientNeuralEngine';
 
 // High-tech Code Snippet component with 1-click Copy
 function CodeSnippetBlock({ code, language }) {
@@ -528,17 +529,23 @@ export default function ChatPanel({
         speak(data.reply);
       }
     } catch (err) {
-      cyberAudio.alert();
+      console.warn('Backend fetch failed, activating EL Client Neural Core:', err);
+      // Seamless Autonomous Client Fallback: processes command directly in browser
+      const clientRes = processClientMessage(text);
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now() + 1,
           role: 'assistant',
-          isError: true,
-          content: `⚠️ [SYS_CRITICAL] Backend Connection Failure: ${err.message}`,
+          content: clientRes.reply,
+          provider: clientRes.provider || 'EL Client Core (Autonomous)',
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         }
       ]);
+
+      if (autoSpeak) {
+        speak(clientRes.reply);
+      }
     } finally {
       setLoading(false);
     }

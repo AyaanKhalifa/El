@@ -4,9 +4,24 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/chat",
+      "destination": "/api/chat"
+    },
+    {
+      "source": "/system/status",
+      "destination": "/api/system/status"
+    },
+    {
+      "source": "/chat/conversations",
+      "destination": "/api/chat/conversations"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
 }
-
