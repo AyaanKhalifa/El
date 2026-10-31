@@ -18,6 +18,7 @@
   - **`COPY CODE`**: Per-block copy on every code block.
 - **Emotive Female Voice by Default**: Auto-selects female TTS voice (`Microsoft Zira`, `Google UK English Female`, etc.) with 35+ name heuristics, persisted in `localStorage`.
 - **Worldwide Multilingual Support**: 19 global languages with speech recognition and speech synthesis.
+- **Android APK & Chrome WebAPK**: 1-tap native APK compilation and installation directly from Google Chrome via Service Worker PWA WebAPK technology.
 - **Persistent Chat History Drawer**: Save, reload, and manage conversation sessions with context memory.
 - **Fully Responsive Mobile Interface**: Cyberpunk UI with adaptive drawer and hamburger navigation for screens `< 860px`.
 - **Unified Dev Server**: `npm run dev` in frontend automatically launches both backend and frontend together.
@@ -82,3 +83,4 @@ If your backend is hosted separately (e.g. on Render, Railway, or Fly.io):
 ## 🛠️ Tech Stack
 - **Frontend**: React 18, Vite, Three.js, Lucide Icons, Cyber Audio API, Web Speech API
 - **Backend**: FastAPI, SQLAlchemy (Async SQLite), Pydantic v2, Uvicorn, HTTPX
+

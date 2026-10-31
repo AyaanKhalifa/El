@@ -10,11 +10,13 @@ import {
   Activity,
   Zap,
   Menu,
-  X
+  X,
+  Smartphone,
+  Download
 } from 'lucide-react';
 import { cyberAudio } from '../utils/cyberAudio';
 
-export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSettings }) {
+export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSettings, onOpenInstall }) {
   const [sfxEnabled, setSfxEnabled] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -201,6 +203,31 @@ export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSe
           <Terminal size={14} /> Terminal
         </button>
 
+        {/* INSTALL APP / APK BUTTON (Desktop) */}
+        <button
+          id="btn-open-install"
+          className="btn-cyber-secondary"
+          onClick={() => {
+            cyberAudio.click();
+            onOpenInstall();
+          }}
+          style={{
+            padding: '6px 12px',
+            background: 'linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(255, 0, 127, 0.15))',
+            border: '1px solid var(--neon-cyan)',
+            color: 'var(--neon-cyan)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '11px',
+            fontWeight: 700
+          }}
+          title="Install WebAPK on Android Chrome or Download App"
+        >
+          <Smartphone size={14} color="var(--neon-cyan)" />
+          <span>INSTALL APK</span>
+        </button>
+
         {/* SFX Audio Toggle */}
         <button
           id="btn-toggle-sfx"
@@ -226,8 +253,25 @@ export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSe
         </button>
       </div>
 
-      {/* Mobile Header Right Icons (SFX, Settings, Hamburger Toggle) */}
+      {/* Mobile Header Right Icons (APK, SFX, Settings, Hamburger Toggle) */}
       <div className="header-nav-mobile" style={{ display: 'none', alignItems: 'center', gap: '6px' }}>
+        <button
+          className="btn-cyber-secondary"
+          onClick={() => {
+            cyberAudio.click();
+            onOpenInstall();
+          }}
+          style={{
+            padding: '6px 8px',
+            background: 'rgba(0, 242, 254, 0.15)',
+            border: '1px solid var(--neon-cyan)',
+            color: 'var(--neon-cyan)'
+          }}
+          title="Install Android WebAPK via Chrome"
+        >
+          <Smartphone size={14} />
+        </button>
+
         <button
           className="btn-cyber-secondary"
           onClick={handleToggleSfx}
@@ -290,6 +334,29 @@ export default function Header({ systemStatus, activeTab, setActiveTab, onOpenSe
           <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--neon-cyan)', marginBottom: '4px' }}>
             // SELECT HUD SUBSYSTEM
           </div>
+
+          <button
+            className="btn-cyber-primary"
+            onClick={() => {
+              cyberAudio.click();
+              setMobileMenuOpen(false);
+              onOpenInstall();
+            }}
+            style={{
+              width: '100%',
+              justifyContent: 'center',
+              padding: '10px 14px',
+              background: 'linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(255, 0, 127, 0.25))',
+              border: '1.5px solid var(--neon-cyan)',
+              color: 'var(--neon-cyan)',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <Smartphone size={16} /> 📲 Install APK / App on Chrome
+          </button>
 
           <button
             className={activeTab === 'chat' ? 'btn-cyber-primary' : 'btn-cyber-secondary'}

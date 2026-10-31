@@ -1,16 +1,21 @@
 {
+  "name": "EL — Cyberpunk Neural AI & Coding Studio",
   "short_name": "EL AI",
-  "name": "EL — Cyberpunk Autonomous AI & Coding Agent",
+  "description": "Emotive Neural AI Companion, Multilingual Assistant, and Autonomous Coding Studio",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050811",
+  "theme_color": "#00f2fe",
+  "categories": ["productivity", "utilities", "developer"],
   "icons": [
     {
       "src": "/favicon.svg",
       "type": "image/svg+xml",
-      "sizes": "128x128 512x512"
+      "sizes": "192x192 512x512",
+      "purpose": "any maskable"
     }
-  ],
-  "start_url": "/",
-  "background_color": "#050811",
-  "theme_color": "#00f2fe",
-  "display": "standalone",
-  "orientation": "any"
+  ]
 }

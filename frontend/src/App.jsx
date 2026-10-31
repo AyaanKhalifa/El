@@ -4,6 +4,7 @@ import ChatPanel from './components/ChatPanel';
 import CodingAgentPanel from './components/CodingAgentPanel';
 import TerminalView from './components/TerminalView';
 import SettingsModal from './components/SettingsModal';
+import InstallModal from './components/InstallModal';
 import CyberCanvas3D from './components/CyberCanvas3D';
 import CyberVisionPanel from './components/CyberVisionPanel';
 
@@ -13,6 +14,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('chat'); // Default to Neural Assistant with 3D Core
   const [systemStatus, setSystemStatus] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isInstallOpen, setIsInstallOpen] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -47,6 +49,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenSettings={() => setIsSettingsOpen(true)}
+        onOpenInstall={() => setIsInstallOpen(true)}
       />
 
       {/* Main Panel Viewport */}
@@ -70,6 +73,12 @@ export default function App() {
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
         systemStatus={systemStatus}
+      />
+
+      {/* Chrome WebAPK & Android App Install Modal */}
+      <InstallModal
+        isOpen={isInstallOpen}
+        onClose={() => setIsInstallOpen(false)}
       />
     </div>
   );
